@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
 <title>eLibrary - a demo spring boot webapp featuring CRUD -
-	List Books</title>
+	Search Result</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -47,8 +47,7 @@
 
 	<div style="padding-top: 1em;" class="container">
 		<div>
-			<span style="font-size: 2em; color: #32a5e7;">Books in our
-				Collection</span> <span style="float: right;"> <a
+			<span style="font-size: 2em; color: #32a5e7;">Search Results</span> <span style="float: right;"> <a
 				class="btn btn-outline-success btn-lg" href="/elibrary/book/new">Add
 					New Book</a>
 			</span>
@@ -71,7 +70,6 @@
 				</thead>
 				<tbody>
 					<tr th:each="book,iterStat : ${books}">
-						<!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
 						<th scope="row" th:text="${iterStat.count}"></th>
 						<td th:text="${book.isbn}"></td>
 						<td th:text="${book.title}"></td>
@@ -96,7 +94,7 @@
 					</a></li>
 					<li th:each="i : ${#numbers.sequence(1, books.totalPages)}"
 						th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
-						<a th:href="@{/elibrary/book/list(page=${i-1})}" th:text="${i}"
+						<a th:href="@{/elibrary/book/search(query=${querystring} ,page=${i-1})}" th:text="${i}"
 						class="page-link"></a>
 					</li>
 				</ul>

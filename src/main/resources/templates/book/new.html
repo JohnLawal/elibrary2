@@ -25,12 +25,14 @@
                     <a class="nav-link" href="/elibrary/book/list">Books</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <span style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
-                <!--<a style="color: #ffffff; margin-right: 0em;" class="nav-link" href="#">John Doe</a>-->
-                <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-                <a href="#" class="btn btn-secondary">Sign In</a>
-            </form>
+            <form class="form-inline my-2 my-lg-0" id="searchForm" method="get" action="/elibrary/book/search">
+				<input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" required>
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+				
+				<span style="color: #fff; padding-left: 2em; padding-right: 1em;">Welcome,
+					Guest</span>
+				<a href="#" class="btn btn-secondary">Sign In</a>
+			</form>
         </div>
     </nav>
 
@@ -49,7 +51,7 @@
                             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
                                   class="alert alert-danger"></span>
                             <input id="title" name="title" type="text" class="form-control"
-                                   th:value="${book.title}">
+                                   th:value="${book.title}" required>
                         </div>
                     </div>
                 </div>
@@ -59,7 +61,7 @@
                             <label for="isbn">ISBN</label>
                             <span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"
                                   class="alert alert-danger"></span>
-                            <input id="isbn" name="isbn" type="text" class="form-control" th:value="${book.isbn}">
+                            <input id="isbn" name="isbn" type="text" class="form-control" th:value="${book.isbn}" required>
                         </div>
                     </div>
                     <div class="col-md-6">

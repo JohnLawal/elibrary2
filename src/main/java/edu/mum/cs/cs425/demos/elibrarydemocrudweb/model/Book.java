@@ -9,88 +9,102 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "books")
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer bookId;
-    @NotBlank(message = "* ISBN is required")
-    private String isbn;
-    @NotBlank(message = "* Book Title is required")
-    private String title;
-    private Double overdueFee;
-    private String publisher;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate datePublished;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer bookId;
+	@NotBlank(message = "* ISBN is required")
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String isbn;
 
-    public Book() {
-    }
+	@NotBlank(message = "* Book Title is required")
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String title;
 
-    public Book(Integer bookId, String isbn, String title, Double overdueFee,
-                String publisher, LocalDate datePublished) {
-        this.bookId = bookId;
-        this.isbn = isbn;
-        this.title = title;
-        this.overdueFee = overdueFee;
-        this.publisher = publisher;
-        this.datePublished = datePublished;
-    }
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private Double overdueFee;
 
-    public Integer getBookId() {
-        return bookId;
-    }
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String publisher;
 
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
+	@Basic(optional = false)
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate datePublished;
 
-    public String getIsbn() {
-        return isbn;
-    }
+	public Book() {
+	}
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
+	public Book(Integer bookId, String isbn, String title, Double overdueFee, String publisher,
+			LocalDate datePublished) {
+		this.bookId = bookId;
+		this.isbn = isbn;
+		this.title = title;
+		this.overdueFee = overdueFee;
+		this.publisher = publisher;
+		this.datePublished = datePublished;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public Book(String isbn, String title, String publisher) {
+		this.isbn = isbn;
+		this.title = title;
+		this.publisher = publisher;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public Integer getBookId() {
+		return bookId;
+	}
 
-    public Double getOverdueFee() {
-        return overdueFee;
-    }
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
 
-    public void setOverdueFee(Double overdueFee) {
-        this.overdueFee = overdueFee;
-    }
+	public String getIsbn() {
+		return isbn;
+	}
 
-    public String getPublisher() {
-        return publisher;
-    }
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public LocalDate getDatePublished() {
-        return datePublished;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setDatePublished(LocalDate datePublished) {
-        this.datePublished = datePublished;
-    }
+	public Double getOverdueFee() {
+		return overdueFee;
+	}
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookId=" + bookId +
-                ", isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", overdueFee=" + overdueFee +
-                ", publisher='" + publisher + '\'' +
-                ", datePublished=" + datePublished +
-                '}';
-    }
+	public void setOverdueFee(Double overdueFee) {
+		this.overdueFee = overdueFee;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public LocalDate getDatePublished() {
+		return datePublished;
+	}
+
+	public void setDatePublished(LocalDate datePublished) {
+		this.datePublished = datePublished;
+	}
+
+	@Override
+	public String toString() {
+		return "Book{" + "bookId=" + bookId + ", isbn='" + isbn + '\'' + ", title='" + title + '\'' + ", overdueFee="
+				+ overdueFee + ", publisher='" + publisher + '\'' + ", datePublished=" + datePublished + '}';
+	}
 }
